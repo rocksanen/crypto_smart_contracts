@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crowdfunding DApp</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title has-text-centered">Crowdfunding DApp</h1>
+
+            <div class="box">
+                <h2 class="subtitle">Create a Campaign</h2>
+                <div class="field">
+                    <label class="label">Title</label>
+                    <div class="control">
+                        <input id="title" class="input" type="text" placeholder="Title">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Description</label>
+                    <div class="control">
+                        <textarea id="description" class="textarea" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Goal (in ETH)</label>
+                    <div class="control">
+                        <input id="goal" class="input" type="number" placeholder="Goal (in ETH)">
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-primary" onclick="createCampaign()">Create Campaign</button>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2 class="subtitle">Contribute to a Campaign</h2>
+                <div class="field">
+                    <label class="label">Campaign ID</label>
+                    <div class="control">
+                        <input id="campaignId" class="input" type="number" placeholder="Campaign ID">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Amount (in ETH)</label>
+                    <div class="control">
+                        <input id="amount" class="input" type="number" placeholder="Amount (in ETH)">
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-link" onclick="contribute()">Contribute</button>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2 class="subtitle">Check Funds</h2>
+                <div class="field">
+                    <label class="label">Campaign ID</label>
+                    <div class="control">
+                        <input id="campaignIdCheck" class="input" type="number" placeholder="Campaign ID">
+                    </div>
+                </div>
+                <div class="control">
+                    <button class="button is-info" onclick="checkFunds()">Check Funds</button>
+                </div>
+                <p id="fundsRaised" class="has-text-weight-bold"></p>
+            </div>
+
+            <div class="box">
+                <h2 class="subtitle">List of Campaigns</h2>
+                <div class="control">
+                    <button class="button is-success" onclick="listCampaigns()">Show Campaigns</button>
+                </div>
+                <div id="campaigns-container" class="mt-4"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
