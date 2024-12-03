@@ -12,7 +12,7 @@ This project demonstrates a decentralized crowdfunding platform built using Ethe
 Backend (Smart Contracts)
 
     Solidity: The Ethereum smart contract language used to write the Crowdfunding contract.
-    Hardhat: A powerful development environment for Ethereum used for compiling, testing, and deploying the smart contract.
+    Hardhat: A development environment for Ethereum used for compiling, testing, and deploying the smart contract.
 
 Frontend
 
@@ -72,7 +72,7 @@ Unit tests were written using Hardhat to ensure the correctness and security of 
 
 # Security Features
 
-The project incorporates robust security measures to ensure the safe handling of funds and prevent vulnerabilities:
+The project incorporates security measures to ensure the safe handling of funds and prevent vulnerabilities:
 
     Input Validation:
         Campaigns must have a valid goal.
