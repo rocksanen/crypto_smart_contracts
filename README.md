@@ -55,22 +55,3 @@ The core of the application is the Crowdfunding smart contract, written in Solid
     campaigns(uint256 _campaignId)
         Fetches details for a specific campaign.
 
-# Project Structure
-
-crowdfunding-dapp/
-├── contracts/
-│   ├── Crowdfunding.sol       # The Solidity smart contract
-│   └── Lock.sol               # Example boilerplate contract (not used)
-├── frontend/
-│   ├── index.html             # Main frontend file
-│   ├── main.js                # Frontend JavaScript logic
-│   └── styles.css             # Frontend styling
-├── scripts/
-│   └── deploy.js              # Script to deploy the smart contract
-├── test/
-│   ├── Crowdfunding.js        # Unit tests for the Crowdfunding contract
-│   └── Lock.js                # Example boilerplate test (not used)
-├── hardhat.config.js          # Hardhat configuration file
-├── package.json               # Node.js dependencies and scripts
-├── package-lock.json          # Locked dependency tree
-└── README.md                  # Project documentation
