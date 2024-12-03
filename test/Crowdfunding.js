@@ -85,4 +85,35 @@ describe("Crowdfunding Contract", function () {
         // Attempt withdrawal by a non-creator
         await expect(crowdfunding.connect(addr1).withdraw(0)).to.be.revertedWith("Only creator can withdraw");
     });
+
+    it("Should prevent contributing to a completed campaign", async function () {
+        await crowdfunding.createCampaign(
+            "Save the Planet",
+            "Help us raise funds for green initiatives",
+            ethers.parseEther("10")
+        );
+    
+        // Contribute enough to meet the goal
+        await crowdfunding.connect(addr1).contribute(0, { value: ethers.parseEther("10") });
+    
+        // Withdraw the funds (completing the campaign)
+        await crowdfunding.withdraw(0);
+    
+        // Attempt to contribute to a completed campaign
+        await expect(
+            crowdfunding.connect(addr1).contribute(0, { value: ethers.parseEther("1") })
+        ).to.be.revertedWith("Campaign already completed");
+    });
+    
+    it("Should prevent creating campaigns when paused", async function () {
+        // Pause the contract
+        await crowdfunding.pause();
+    
+        // Attempt to create a campaign while paused
+        await expect(
+            crowdfunding.createCampaign("Test Campaign", "This should fail", ethers.parseEther("5"))
+        ).to.be.reverted; // Check that it reverts, regardless of the reason
+    });
+    
+    
 });
