@@ -55,3 +55,40 @@ The core of the application is the Crowdfunding smart contract, written in Solid
     campaigns(uint256 _campaignId)
         Fetches details for a specific campaign.
 
+# Testing
+
+Unit tests were written using Hardhat to ensure the correctness and security of the smart contract. The key areas tested include:
+
+    Campaign Creation:
+    Verified that campaigns with valid details can be created successfully.
+    Contributions:
+    Ensured contributions can only be made to valid and active campaigns. Confirmed that funds are correctly tracked.
+    Withdrawals:
+    Checked that only campaign creators can withdraw funds and only if the goal is met.
+    Error Handling:
+    Verified proper reverts for invalid actions, such as contributing to a completed campaign or withdrawing funds prematurely.
+    Paused State:
+    Confirmed that all key functions revert when the contract is paused.
+
+# Security Features
+
+The project incorporates robust security measures to ensure the safe handling of funds and prevent vulnerabilities:
+
+    Input Validation:
+        Campaigns must have a valid goal.
+        Contributions must be greater than 0 and only allowed for active campaigns.
+
+    Role-Based Access Control:
+        Only authorized users can create campaigns or perform specific administrative actions using OpenZeppelin's AccessControl.
+
+    Circuit Breaker Pattern:
+        Critical functions are paused during emergencies using OpenZeppelin's Pausable contract.
+
+    Reentrancy Protection:
+        Used OpenZeppelin's ReentrancyGuard to prevent reentrancy attacks, especially in the withdraw function.
+
+    Checks-Effects-Interactions Pattern:
+        Modified the contract state before making external calls to avoid reentrancy issues.
+
+    Error Handling:
+        Comprehensive error messages to make debugging and user interactions clearer.
