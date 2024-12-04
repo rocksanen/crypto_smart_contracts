@@ -59,17 +59,25 @@ contract Crowdfunding is AccessControl, Pausable, ReentrancyGuard {
     require(_campaignId < campaigns.length, "Invalid campaign ID");
     Campaign storage campaign = campaigns[_campaignId];
     require(msg.sender == campaign.creator, "Only creator can withdraw");
+    require(!campaign.completed, "Funds already withdrawn"); // Check completion first
     require(campaign.fundsRaised >= campaign.goal, "Goal not met");
-    require(!campaign.completed, "Funds already withdrawn");
 
-    campaign.completed = true; // Mark the campaign as completed
+    campaign.completed = true; // Mark campaign as completed
     uint256 amount = campaign.fundsRaised;
-    campaign.fundsRaised = 0; // Reset fundsRaised to prevent reentrancy
-    campaign.creator.transfer(amount); // Transfer Ether to the creator
+    campaign.fundsRaised = 0; // Reset fundsRaised after marking as completed
+    campaign.creator.transfer(amount); // Transfer funds to the creator
 }
+
+
 
 
     function getCampaignCount() public view returns (uint256) {
         return campaigns.length;
     }
+
+    function getFundsRaised(uint256 _campaignId) public view returns (uint256) {
+    require(_campaignId < campaigns.length, "Invalid campaign ID");
+    return campaigns[_campaignId].fundsRaised;
+}
+
 }   
